@@ -16,11 +16,9 @@ pipeline {
                 echo 'Deploying the image...'
             }
         }
-        {
-            stage('Testing') {
-                steps {
-                    echo 'Testing...'
-                }
+        stage('Testing') {  
+            steps {
+                echo 'Testing...'
             }
         }
     }
