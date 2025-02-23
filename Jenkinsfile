@@ -9,14 +9,26 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'docker build -t csi402 .'  // แก้จาก bat เป็น sh
+                bat 'docker build -t csi402 .'
+            }
+        }
+        stage('Deploy') {  // เพิ่ม stage Deploy ที่ถูกต้อง
+            steps {
+                echo 'Deploying...'
+                bat 'docker push your-registry/csi402:latest'  // ตัวอย่างคำสั่ง deploy
             }
         }
         stage('Testing') {
             steps {
                 echo 'Testing...'
-                bat 'docker run -d --name csi402 -p 55555:3000 csi402:latest'  // แก้จาก bat เป็น sh
+                bat 'docker run -d --name csi402 -p 55555:3000 csi402:latest'
             }
+        }
+    }
+    post {  // เพิ่ม post section เพื่อจัดการ cleanup
+        always {
+            bat 'docker rm -f csi402 || true'
+            bat 'docker rmi csi402 || true'
         }
     }
 }
