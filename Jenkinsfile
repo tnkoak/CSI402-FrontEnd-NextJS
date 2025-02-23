@@ -12,11 +12,6 @@ pipeline {
                 bat 'docker build -t csi402 .'  // แก้จาก bat เป็น sh
             }
         }
-        stage('Deploy Image') {
-            steps {
-                echo 'Deploying the image...'
-            }
-        }
         stage('Testing') {
             steps {
                 echo 'Testing...'
