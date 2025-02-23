@@ -25,10 +25,4 @@ pipeline {
             }
         }
     }
-    post {  // เพิ่ม post section เพื่อจัดการ cleanup
-        always {
-            bat 'docker rm -f csi402 || true'
-            bat 'docker rmi csi402 || true'
-        }
-    }
 }
